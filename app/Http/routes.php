@@ -10,9 +10,21 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+//use Illuminate\Support\Facades\Mail;
 
 Route::get('/', function () {
-    return view('welcome');
+   $data = [
+       
+       'title'=>'hi student',
+       'content' => 'this is a learavel cousrse that i created'
+   
+   
+   ];
+    
+    \Illuminate\Support\Facades\Mail::send('emails.test', $data, function ($message){
+
+        $message->to('jamie@hotmail.com', 'jamie')->subject('hello');
+    });
 });
 
 Route::auth();
